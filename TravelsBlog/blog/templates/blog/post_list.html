@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Travel Blog{% endblock %}
+
+{% block content %}
+    <div class="list-container">
+    {% for post in posts %}
+    <div class="list">
+        <a href="{{ post.get_absolute_url }}"><h1>{{ post.title }}</h1></a>
+        <p class="info">Published {{ post.published }} by {{ post.author }}</p>
+        <img src="{{ post.image.url }}" >
+        {{ post.content|truncatewords:20|linebreaks }}
+    </div>
+    {% endfor %}
+    </div>
+    {% include 'pagination.html' with page=posts %}
+{% endblock %}
